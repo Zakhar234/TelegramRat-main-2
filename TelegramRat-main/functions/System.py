@@ -332,3 +332,4 @@ def DVDClose(dp, bot, admin_id):
                 await bot.send_message(admin_id, 'Успешно ✅')
             except:
                 await bot.send_message(admin_id, 'У жертвы нету DVD')
+
